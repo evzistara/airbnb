@@ -2,23 +2,32 @@ import Star from "../assets/star.png"
 
 
 function Card(props){
+
+    let badgeText;
+    if(props.item.openSpots === 0) {
+        badgeText ="SOLD OUT"
+    } else if (props.item.place === "online") {
+        badgeText = "ONLINE"
+    }
     return(
 <div className="card">
         <div className="card--image">
-            <img src={props.img} alt="Katie Zaferes" />
+            <img src={props.item.img} alt="Katie Zaferes" />
 
-            <div className="badge">
-                <p>{props.status}</p>
-            </div>
+            {badgeText && <div className="badge">
+                <p>{badgeText}</p>
+        
+
+            </div>}
         </div>
     
         <div className="card--info">
             <div className="card--stats">
             <img src={Star} />
-            <span >{props.score}</span><span className="gray"> ({props.reviewNumber}) USA</span>
+            <span >{props.item.score}</span><span className="gray"> ({props.item.reviewNumber}) {props.item.place}</span>
             </div>
-            <p>{props.name}</p>
-            <p><span className="bold">From ${props.price}
+            <p>{props.item.name}</p>
+            <p><span className="bold">From ${props.item.price}
             </span> / person
             </p>
         </div>
